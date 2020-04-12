@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_12_143558) do
+ActiveRecord::Schema.define(version: 2020_04_12_144322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2020_04_12_143558) do
     t.index ["email"], name: "index_employees_on_email", unique: true
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "team_id"
+    t.bigint "employee_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["employee_id"], name: "index_memberships_on_employee_id"
+    t.index ["team_id"], name: "index_memberships_on_team_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.boolean "active", default: true, null: false
@@ -31,4 +40,6 @@ ActiveRecord::Schema.define(version: 2020_04_12_143558) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "memberships", "employees"
+  add_foreign_key "memberships", "teams"
 end

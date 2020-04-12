@@ -14,5 +14,8 @@
 #  index_employees_on_email  (email) UNIQUE
 #
 class Employee < ApplicationRecord
+  has_many :memberships, dependent: :destroy
+  has_many :teams, through: :memberships
+
   validates :email, uniqueness: true
 end
