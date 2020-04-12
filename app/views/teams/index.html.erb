@@ -1,0 +1,15 @@
+<h1>Teams#index</h1>
+
+<ul>
+  <% @teams.each do |team| %>
+    <li>Name: <%= team.name %></li>
+    <li>Active?: <%= team.active %></li>
+    <li>
+      <ul>
+      <% team.employees.each do |employee| %>
+        <li>Email: <%= employee.email %></li>
+      <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>

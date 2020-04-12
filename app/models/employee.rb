@@ -17,5 +17,5 @@ class Employee < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :teams, through: :memberships
 
-  validates :email, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 end

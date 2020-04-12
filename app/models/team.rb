@@ -11,4 +11,6 @@
 class Team < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :employees, through: :memberships
+
+  # accepts_nested_attributes_for :employees
 end
